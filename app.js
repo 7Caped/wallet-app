@@ -268,26 +268,6 @@ function setupNavigation() {
      // Add active class to clicked item
      this.classList.add('active');
 
-     // Different modal behavior based on which nav item was clicked
-     if (index === 0) { // Einnahmen
-       activeTransactionType = "income";
-       // Check if there's at least one account besides total
-       if (walletData.cards.length > 1) {
-         openTransactionModal("income");
-       } else {
-         alert('Bitte erstellen Sie zuerst ein Konto bevor Sie Einnahmen hinzufügen.');
-       }
-     } else if (index === 1) { // Ausgaben
-       activeTransactionType = "expense";
-       // Check if there's at least one account besides total
-       if (walletData.cards.length > 1) {
-         openTransactionModal("expense");
-       } else {
-         alert('Bitte erstellen Sie zuerst ein Konto bevor Sie Ausgaben hinzufügen.');
-       }
-     } else { // Geplant
-       alert('Geplante Transaktionen sind in dieser Version noch nicht verfügbar');
-     }
    });
  });
 

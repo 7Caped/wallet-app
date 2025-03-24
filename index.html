@@ -3,13 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wallet App</title>
+  <title>Übersicht - Wallet</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Neue Stile für die verbesserte Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 12px 20px;
+      border-radius: 24px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      z-index: 100;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .nav-primary {
+      display: flex;
+      justify-content: space-between;
+      width: 75%;
+    }
+
+    .nav-action {
+      width: 50px;
+      height: 50px;
+      background-color: #6366F1;
+      border-radius: 25px;
+      margin-left: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-action:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.5);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 20px;
+      transition: all 0.2s;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-item .nav-text {
+      margin-left: 8px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .nav-item.active {
+      background-color: #e0e7ff;
+    }
+
+    .nav-item.active .nav-text {
+      display: block;
+    }
+
+    /* Verbesserte Modal Stile */
+    .tabs {
+      display: flex;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .tab {
+      padding: 12px 20px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    .tab.active {
+      color: #6366F1;
+      border-bottom: 2px solid #6366F1;
+    }
+  </style>
 </head>
 <body>
-  <div class="header">
-    Finanz App
-  </div>
+  <div class="header"></div>
 
   <div class="main-content">
     <div class="card-container">
@@ -28,29 +115,40 @@
     </div>
   </div>
 
+  <!-- Neue Bottom Navigation -->
   <div class="bottom-nav">
-    <div class="nav-item active">
-      <div class="nav-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-        </svg>
+    <div class="nav-primary">
+      <div class="nav-item active">
+        <div class="nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+            <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <div class="nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <div class="nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg>
+        </div>
       </div>
     </div>
 
-    <div class="nav-item">
-      <div class="nav-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-        </svg>
-      </div>
-    </div>
-
-    <div class="nav-item">
-      <div class="nav-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
-        </svg>
-      </div>
+    <div class="nav-action" id="toggleTransactionModal">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+      </svg>
     </div>
   </div>
 
@@ -63,17 +161,17 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-<div class="form-group">
-  <label for="card-type">Kontotyp</label>
-  <select id="card-type">
-    <option value="Girokonto">Girokonto</option>
-    <option value="Sparkonto">Sparkonto</option>
-    <option value="Bargeld">Bargeld</option>
-    <option value="Kreditkarte">Kreditkarte</option>
-    <option value="Depot">Depot</option>
-    <option value="Sonstiges">Sonstiges</option>
-  </select>
-</div>
+          <div class="form-group">
+            <label for="card-type">Kontotyp</label>
+            <select id="card-type">
+              <option value="Girokonto">Girokonto</option>
+              <option value="Sparkonto">Sparkonto</option>
+              <option value="Bargeld">Bargeld</option>
+              <option value="Kreditkarte">Kreditkarte</option>
+              <option value="Depot">Depot</option>
+              <option value="Sonstiges">Sonstiges</option>
+            </select>
+          </div>
           <label for="card-title">Kontoname</label>
           <input type="text" id="card-title" placeholder="z.B. Girokonto, Sparkonto">
         </div>
@@ -99,14 +197,20 @@
     </div>
   </div>
 
-  <!-- Transaction Modal -->
+  <!-- Verbessertes Transaction Modal mit Tabs -->
   <div class="modal-overlay" id="transactionModal">
     <div class="modal">
       <div class="modal-header">
-        <div class="modal-title"><!-- Title will be dynamically set by JS --></div>
+        <div class="modal-title">Transaktion hinzufügen</div>
         <button class="modal-close">&times;</button>
       </div>
       <div class="modal-body">
+        <!-- Tabs für Einnahme/Ausgabe -->
+        <div class="tabs">
+          <div class="tab active" id="income-tab">Einnahme</div>
+          <div class="tab" id="expense-tab">Ausgabe</div>
+        </div>
+
         <div class="form-group">
           <label for="transaction-name">Beschreibung</label>
           <input type="text" id="transaction-name" placeholder="z.B. Gehalt, Einkauf">
@@ -142,6 +246,54 @@
       </div>
     </div>
   </div>
-   <script src="app.js"></script>
+
+  <script src="app.js"></script>
+  <script>
+  // JavaScript für die neue Navigation und das verbesserte Modal
+  document.addEventListener('DOMContentLoaded', function() {
+    // Navigation-Items
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach((item, index) => {
+      item.addEventListener('click', function() {
+        // Active-Klasse von allen entfernen
+        navItems.forEach(navItem => navItem.classList.remove('active'));
+        // Active-Klasse zum geklickten Element hinzufügen
+        this.classList.add('active');
+
+        // Different behavior based on which nav item was clicked
+        if (index === 0) { // First button - Overview/Home
+          // Just reload the page or do nothing if already on index
+          window.location.href = 'index.html';
+        } else if (index === 1) { // Second button - Feature coming soon
+          alert('Dieses Feature ist in der aktuellen Version noch nicht verfügbar');
+        } else if (index === 2) { // User profile
+          alert('Benutzerprofileinstellungen sind in dieser Version noch nicht verfügbar');
+        }
+      });
+    });
+
+    // Toggle Transaction Modal Button
+    const toggleButton = document.getElementById('toggleTransactionModal');
+    toggleButton.addEventListener('click', function() {
+      openModal('transactionModal');
+    });
+
+    // Transaction Modal Tabs
+    const incomeTAb = document.getElementById('income-tab');
+    const expenseTab = document.getElementById('expense-tab');
+
+    incomeTAb.addEventListener('click', function() {
+      expenseTab.classList.remove('active');
+      incomeTAb.classList.add('active');
+      activeTransactionType = "income";
+    });
+
+    expenseTab.addEventListener('click', function() {
+      incomeTAb.classList.remove('active');
+      expenseTab.classList.add('active');
+      activeTransactionType = "expense";
+    });
+  });
+  </script>
 </body>
 </html>
