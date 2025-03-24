@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    Finanz App
+  </div>
+
+  <div class="main-content">
+    <div class="card-container">
+      <!-- Cards will be added here by JavaScript -->
+    </div>
+
+    <div class="section-title">
+      <span>Transaktionen</span>
+      <span class="see-all">Alle ansehen</span>
+    </div>
+
+    <div class="transactions-container">
+      <div class="transaction-list">
+        <!-- Transactions will be added here by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <div class="nav-item active">
+      <div class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Card Modal -->
+  <div class="modal-overlay" id="addCardModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Neues Konto hinzufügen</div>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+<div class="form-group">
+  <label for="card-type">Kontotyp</label>
+  <select id="card-type">
+    <option value="Girokonto">Girokonto</option>
+    <option value="Sparkonto">Sparkonto</option>
+    <option value="Bargeld">Bargeld</option>
+    <option value="Kreditkarte">Kreditkarte</option>
+    <option value="Depot">Depot</option>
+    <option value="Sonstiges">Sonstiges</option>
+  </select>
+</div>
+          <label for="card-title">Kontoname</label>
+          <input type="text" id="card-title" placeholder="z.B. Girokonto, Sparkonto">
+        </div>
+        <div class="form-group">
+          <label for="card-amount">Kontostand</label>
+          <input type="text" id="card-amount" placeholder="z.B. 1000,00 €">
+        </div>
+        <div class="form-group">
+          <label>Farbe auswählen</label>
+          <div class="color-options">
+            <div class="color-option selected" style="background: linear-gradient(135deg, #3b82f6, #2563eb);" data-gradient="135deg, #3b82f6, #2563eb"></div>
+            <div class="color-option" style="background: linear-gradient(135deg, #10b981, #059669);" data-gradient="135deg, #10b981, #059669"></div>
+            <div class="color-option" style="background: linear-gradient(135deg, #f59e0b, #d97706);" data-gradient="135deg, #f59e0b, #d97706"></div>
+            <div class="color-option" style="background: linear-gradient(135deg, #ef4444, #dc2626);" data-gradient="135deg, #ef4444, #dc2626"></div>
+            <div class="color-option" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);" data-gradient="135deg, #8B5CF6, #7C3AED"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-cancel">Abbrechen</button>
+        <button class="btn btn-primary">Konto erstellen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transaction Modal -->
+  <div class="modal-overlay" id="transactionModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title"><!-- Title will be dynamically set by JS --></div>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="transaction-name">Beschreibung</label>
+          <input type="text" id="transaction-name" placeholder="z.B. Gehalt, Einkauf">
+        </div>
+        <div class="form-group">
+          <label for="transaction-amount">Betrag</label>
+          <input type="text" id="transaction-amount" placeholder="z.B. 100,00 €">
+        </div>
+        <div class="form-group">
+          <label for="transaction-card">Konto</label>
+          <select id="transaction-card">
+            <!-- Options will be added by JavaScript -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="transaction-icon">Symbol (1 Buchstabe)</label>
+          <input type="text" id="transaction-icon" placeholder="z.B. G für Gehalt" maxlength="1">
+        </div>
+        <div class="form-group">
+          <label>Farbe auswählen</label>
+          <div class="color-options">
+            <div class="color-option selected" style="background-color: #3b82f6;" data-color="#3b82f6"></div>
+            <div class="color-option" style="background-color: #10b981;" data-color="#10b981"></div>
+            <div class="color-option" style="background-color: #f59e0b;" data-color="#f59e0b"></div>
+            <div class="color-option" style="background-color: #ef4444;" data-color="#ef4444"></div>
+            <div class="color-option" style="background-color: #8B5CF6;" data-color="#8B5CF6"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-cancel">Abbrechen</button>
+        <button class="btn btn-primary">Hinzufügen</button>
+      </div>
+    </div>
+  </div>
+   <script src="app.js"></script>
+</body>
+</html>
